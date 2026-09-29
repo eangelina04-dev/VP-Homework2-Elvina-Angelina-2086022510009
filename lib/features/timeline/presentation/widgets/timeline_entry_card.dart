@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+
+import '../../data/timeline_entry.dart';
+
+class TimelineEntryCard extends StatelessWidget {
+  const TimelineEntryCard({
+    super.key,
+    required this.entry,
+    required this.isFavorite,
+    required this.onTap,
+    required this.onFavoriteToggled,
+  });
+
+  final TimelineEntry entry;
+  final bool isFavorite;
+  final VoidCallback onTap;
+  final ValueChanged<String> onFavoriteToggled;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colors = theme.colorScheme;
+
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${entry.yearLabel} · ${entry.mediaType.label}',
+                      style: textTheme.labelMedium
+                          ?.copyWith(color: colors.primary),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      entry.title,
+                      style: textTheme.titleMedium,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      entry.summary,
+                      style: textTheme.bodyMedium,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                tooltip: isFavorite ? 'Hapus dari favorit' : 'Tambah ke favorit',
+                icon: Icon(isFavorite ? Icons.star : Icons.star_border),
+                onPressed: () => onFavoriteToggled(entry.id),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
