@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'features/timeline/presentation/timeline_screen.dart';
 
 class StarWarsApp extends StatelessWidget {
   const StarWarsApp({super.key});
@@ -11,7 +12,7 @@ class StarWarsApp extends StatelessWidget {
         colorSchemeSeed: const Color(0xFF1A237E),
         useMaterial3: true,
       ),
-      home: const Scaffold(body: Center(child: Text('Timeline'))),
+      home: const TimelineScreen(),
     );
   }
 }
