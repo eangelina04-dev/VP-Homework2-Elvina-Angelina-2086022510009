@@ -23,6 +23,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
   bool _isLoading = true;
   String _query = '';
   String? _selectedEra;
+  bool _showFavoritesOnly = false;
   final Set<String> _favoriteIds = {};
 
   @override
@@ -52,7 +53,9 @@ class _TimelineScreenState extends State<TimelineScreen> {
       final matchesQuery = q.isEmpty ||
           e.title.toLowerCase().contains(q) ||
           e.summary.toLowerCase().contains(q);
-      return matchesEra && matchesQuery;
+      final matchesFavorite =
+          !_showFavoritesOnly || _favoriteIds.contains(e.id);
+      return matchesEra && matchesQuery && matchesFavorite;
     }).toList();
   }
 
@@ -76,7 +79,19 @@ class _TimelineScreenState extends State<TimelineScreen> {
     final rows = _groupByEra(entries);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Star Wars Timeline')),
+      appBar: AppBar(
+        title: const Text('Star Wars Timeline'),
+        actions: [
+          IconButton(
+            tooltip: _showFavoritesOnly ? 'Tampilkan semua' : 'Hanya favorit',
+            isSelected: _showFavoritesOnly,
+            icon: const Icon(Icons.star_border),
+            selectedIcon: const Icon(Icons.star),
+            onPressed: () =>
+                setState(() => _showFavoritesOnly = !_showFavoritesOnly),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Padding(
@@ -94,7 +109,11 @@ class _TimelineScreenState extends State<TimelineScreen> {
             child: _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : entries.isEmpty
-                ? const EmptyResultsView()
+                ? EmptyResultsView(
+              message: _showFavoritesOnly
+                  ? 'Ketuk bintang pada sebuah peristiwa untuk menambahkannya.'
+                  : 'Coba kata kunci atau era yang lain.',
+                  )
                 : ListView.builder(
               padding: const EdgeInsets.only(bottom: 16),
               itemCount: rows.length,

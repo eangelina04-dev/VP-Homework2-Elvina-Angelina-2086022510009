@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class EmptyResultsView extends StatelessWidget {
-  const EmptyResultsView({super.key});
+  const EmptyResultsView({
+    super.key,
+    this.message = 'Coba kata kunci atau era yang lain.',
+  });
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class EmptyResultsView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Coba kata kunci atau era yang lain.',
+              message,
               style: theme.textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
