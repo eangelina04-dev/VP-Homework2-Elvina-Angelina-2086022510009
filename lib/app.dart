@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'core/theme/app_theme.dart';
 import 'features/timeline/presentation/timeline_screen.dart';
 
 class StarWarsApp extends StatelessWidget {
@@ -8,10 +10,8 @@ class StarWarsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Star Wars Chronology',
-      theme: ThemeData(
-        colorSchemeSeed: const Color(0xFF1A237E),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.dark,
+      themeMode: ThemeMode.dark,
       home: const TimelineScreen(),
     );
   }

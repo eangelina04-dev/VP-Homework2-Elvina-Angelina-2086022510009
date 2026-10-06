@@ -80,7 +80,19 @@ class _TimelineScreenState extends State<TimelineScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Star Wars Timeline'),
+        toolbarHeight: 88,
+        title: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/images/star_wars_logo.png',
+              height: 60,
+              semanticLabel: 'Logo Star Wars',
+            ),
+            const SizedBox(height: 4),
+            const Text('Star Wars Timeline'),
+          ],
+        ),
         actions: [
           IconButton(
             tooltip: _showFavoritesOnly ? 'Tampilkan semua' : 'Hanya favorit',
