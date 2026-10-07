@@ -48,25 +48,26 @@ class AppTheme {
   );
 
   static ThemeData get dark {
-    final scheme = ColorScheme.fromSeed(
-      seedColor: starYellow,
-      brightness: Brightness.dark,
-    ).copyWith(
-      primary: starYellow,
-      onPrimary: black,
-      secondary: white,
-      onSecondary: black,
-      secondaryContainer: barGray,
-      onSecondaryContainer: white,
-      tertiary: starYellow,
-      onTertiary: black,
-      surface: black,
-      onSurface: white,
-      onSurfaceVariant: const Color(0xFFB3B3B3),
-      surfaceContainerLow: const Color(0xFF121212),
-      surfaceContainerHigh: const Color(0xFF1E1E1E),
-      outlineVariant: const Color(0xFF333333),
-    );
+    final scheme =
+        ColorScheme.fromSeed(
+          seedColor: starYellow,
+          brightness: Brightness.dark,
+        ).copyWith(
+          primary: starYellow,
+          onPrimary: black,
+          secondary: white,
+          onSecondary: black,
+          secondaryContainer: barGray,
+          onSecondaryContainer: white,
+          tertiary: starYellow,
+          onTertiary: black,
+          surface: black,
+          onSurface: white,
+          onSurfaceVariant: const Color(0xFFB3B3B3),
+          surfaceContainerLow: const Color(0xFF121212),
+          surfaceContainerHigh: const Color(0xFF1E1E1E),
+          outlineVariant: const Color(0xFF333333),
+        );
 
     return ThemeData(
       useMaterial3: true,
@@ -78,9 +79,7 @@ class AppTheme {
         scrolledUnderElevation: 0,
         centerTitle: true,
       ),
-      chipTheme: ChipThemeData(
-        side: BorderSide(color: scheme.outlineVariant),
-      ),
+      chipTheme: ChipThemeData(side: BorderSide(color: scheme.outlineVariant)),
     );
   }
 }

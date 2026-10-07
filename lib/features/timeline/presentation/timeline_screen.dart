@@ -17,8 +17,10 @@ class TimelineScreen extends StatefulWidget {
 }
 
 class _TimelineScreenState extends State<TimelineScreen> {
-  static final List<String> _eras =
-  timelineEntries.map((e) => e.era).toSet().toList();
+  static final List<String> _eras = timelineEntries
+      .map((e) => e.era)
+      .toSet()
+      .toList();
 
   bool _isLoading = true;
   String _query = '';
@@ -48,7 +50,8 @@ class _TimelineScreenState extends State<TimelineScreen> {
     final q = _query.trim().toLowerCase();
     return timelineEntries.where((e) {
       final matchesEra = _selectedEra == null || e.era == _selectedEra;
-      final matchesQuery = q.isEmpty ||
+      final matchesQuery =
+          q.isEmpty ||
           e.title.toLowerCase().contains(q) ||
           e.summary.toLowerCase().contains(q);
       final matchesFavorite =
@@ -119,36 +122,36 @@ class _TimelineScreenState extends State<TimelineScreen> {
                 ? const Center(child: CircularProgressIndicator())
                 : entries.isEmpty
                 ? EmptyResultsView(
-              message: _showFavoritesOnly
-                  ? 'Ketuk bintang pada sebuah peristiwa untuk menambahkannya.'
-                  : 'Coba kata kunci atau era yang lain.',
+                    message: _showFavoritesOnly
+                        ? 'Ketuk bintang pada sebuah peristiwa untuk menambahkannya.'
+                        : 'Coba kata kunci atau era yang lain.',
                   )
                 : ListView.builder(
-              padding: const EdgeInsets.only(bottom: 16),
-              itemCount: rows.length,
-              itemBuilder: (context, index) {
-                final row = rows[index];
-                if (row is! TimelineEntry) {
-                  return EraHeader(era: row as String);
-                }
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 4,
+                    padding: const EdgeInsets.only(bottom: 16),
+                    itemCount: rows.length,
+                    itemBuilder: (context, index) {
+                      final row = rows[index];
+                      if (row is! TimelineEntry) {
+                        return EraHeader(era: row as String);
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 4,
+                        ),
+                        child: TimelineEntryCard(
+                          entry: row,
+                          isFavorite: _favoriteIds.contains(row.id),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => TimelineDetailScreen(entry: row),
+                            ),
+                          ),
+                          onFavoriteToggled: _toggleFavorite,
+                        ),
+                      );
+                    },
                   ),
-                  child: TimelineEntryCard(
-                    entry: row,
-                    isFavorite: _favoriteIds.contains(row.id),
-                    onTap:  () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => TimelineDetailScreen(entry: row),
-                      ),
-                    ),
-                    onFavoriteToggled: _toggleFavorite,
-                  ),
-                );
-              },
-            ),
           ),
         ],
       ),

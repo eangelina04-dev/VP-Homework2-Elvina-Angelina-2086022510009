@@ -37,8 +37,9 @@ class TimelineEntryCard extends StatelessWidget {
                   children: [
                     Text(
                       '${entry.yearLabel} · ${entry.mediaType.label}',
-                      style: textTheme.labelMedium
-                          ?.copyWith(color: colors.onSurfaceVariant),
+                      style: textTheme.labelMedium?.copyWith(
+                        color: colors.onSurfaceVariant,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -50,8 +51,9 @@ class TimelineEntryCard extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       entry.summary,
-                      style: textTheme.bodyMedium
-                        ?.copyWith(color: colors.onSurfaceVariant),
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: colors.onSurfaceVariant,
+                      ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -59,7 +61,9 @@ class TimelineEntryCard extends StatelessWidget {
                 ),
               ),
               IconButton(
-                tooltip: isFavorite ? 'Hapus dari favorit' : 'Tambah ke favorit',
+                tooltip: isFavorite
+                    ? 'Hapus dari favorit'
+                    : 'Tambah ke favorit',
                 isSelected: isFavorite,
                 icon: const Icon(Icons.star_border),
                 selectedIcon: const Icon(Icons.star),

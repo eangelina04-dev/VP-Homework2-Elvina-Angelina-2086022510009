@@ -18,11 +18,7 @@ class EmptyResultsView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.search_off,
-              size: 48,
-              color: theme.colorScheme.outline,
-            ),
+            Icon(Icons.search_off, size: 48, color: theme.colorScheme.outline),
             const SizedBox(height: 16),
             Text(
               'Tidak ada peristiwa ditemukan',

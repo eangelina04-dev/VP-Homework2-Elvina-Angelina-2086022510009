@@ -10,7 +10,7 @@ class StarWarsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Star Wars Chronology',
-      theme: AppTheme.dark,
+      darkTheme: AppTheme.dark,
       themeMode: ThemeMode.dark,
       home: const TimelineScreen(),
     );
