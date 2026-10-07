@@ -1,12 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   AppTheme._();
 
   static const black = Color(0xFF000000);
   static const white = Color(0xFFFFFFFF);
-  static const starYellow = Color(0xFFF5D547); // kuning tombol di starwars.com
-  static const barGray = Color(0xFF4D4D4D); // abu-abu bar filter
+  static const starYellow = Color(0xFFF5D547);
+  static const barGray = Color(0xFF4D4D4D);
+
+  static TextTheme get _textTheme => TextTheme(
+    titleLarge: GoogleFonts.barlowCondensed(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
+      height: 1.15,
+    ),
+    titleMedium: GoogleFonts.barlowCondensed(
+      fontSize: 18,
+      fontWeight: FontWeight.w600,
+      height: 1.2,
+    ),
+    titleSmall: GoogleFonts.barlowCondensed(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 1.5,
+    ),
+    bodyLarge: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      height: 1.5,
+    ),
+    bodyMedium: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      height: 1.5,
+    ),
+    labelMedium: const TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.8,
+    ),
+  );
 
   static ThemeData get dark {
     final scheme = ColorScheme.fromSeed(
@@ -17,21 +51,22 @@ class AppTheme {
       onPrimary: black,
       secondary: white,
       onSecondary: black,
-      secondaryContainer: barGray, // warna chip yang dipilih
+      secondaryContainer: barGray,
       onSecondaryContainer: white,
       tertiary: starYellow,
       onTertiary: black,
       surface: black,
       onSurface: white,
       onSurfaceVariant: const Color(0xFFB3B3B3),
-      surfaceContainerLow: const Color(0xFF121212), // warna Card
-      surfaceContainerHigh: const Color(0xFF1E1E1E), // warna kolom cari
+      surfaceContainerLow: const Color(0xFF121212),
+      surfaceContainerHigh: const Color(0xFF1E1E1E),
       outlineVariant: const Color(0xFF333333),
     );
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
+      textTheme: _textTheme,
       scaffoldBackgroundColor: black,
       appBarTheme: const AppBarTheme(
         backgroundColor: black,
