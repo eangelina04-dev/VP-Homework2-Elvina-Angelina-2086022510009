@@ -38,19 +38,20 @@ class TimelineEntryCard extends StatelessWidget {
                     Text(
                       '${entry.yearLabel} · ${entry.mediaType.label}',
                       style: textTheme.labelMedium
-                          ?.copyWith(color: colors.primary),
+                          ?.copyWith(color: colors.onSurfaceVariant),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       entry.title,
-                      style: textTheme.titleMedium,
+                      style: textTheme.titleLarge,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       entry.summary,
-                      style: textTheme.bodyMedium,
+                      style: textTheme.bodyMedium
+                        ?.copyWith(color: colors.onSurfaceVariant),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
