@@ -10,6 +10,11 @@ class AppTheme {
   static const barGray = Color(0xFF4D4D4D);
 
   static TextTheme get _textTheme => TextTheme(
+    headlineMedium: GoogleFonts.barlowCondensed(
+      fontSize: 32,
+      fontWeight: FontWeight.w700,
+      height: 1.15,
+    ),
     titleLarge: GoogleFonts.barlowCondensed(
       fontSize: 24,
       fontWeight: FontWeight.w700,

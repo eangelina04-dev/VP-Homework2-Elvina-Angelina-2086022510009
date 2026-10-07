@@ -22,12 +22,12 @@ class TimelineDetailScreen extends StatelessWidget {
           children: [
             Text(
               '${entry.yearLabel} · ${entry.mediaType.label}',
-              style: textTheme.labelMedium?.copyWith(color: colors.primary),
+              style: textTheme.labelMedium?.copyWith(color: colors.onSurfaceVariant),
             ),
-            const SizedBox(height: 4),
-            Text(entry.title, style: textTheme.titleMedium),
             const SizedBox(height: 8),
-            Text(entry.summary, style: textTheme.bodyMedium),
+            Text(entry.title, style: textTheme.headlineMedium),
+            const SizedBox(height: 16),
+            Text(entry.summary, style: textTheme.bodyLarge),
           ],
         ),
       ),
