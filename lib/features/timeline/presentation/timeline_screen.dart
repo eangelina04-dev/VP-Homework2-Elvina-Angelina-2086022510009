@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'timeline_detail_screen.dart';
 import '../data/timeline_data.dart';
 import '../data/timeline_entry.dart';
 import 'widgets/empty_results_view.dart';
@@ -19,7 +20,6 @@ class _TimelineScreenState extends State<TimelineScreen> {
   static final List<String> _eras =
   timelineEntries.map((e) => e.era).toSet().toList();
 
-  // State yang di-hoist di sini, dipakai bersama oleh anak-anaknya.
   bool _isLoading = true;
   String _query = '';
   String? _selectedEra;
@@ -32,7 +32,6 @@ class _TimelineScreenState extends State<TimelineScreen> {
     _loadData();
   }
 
-  // Simulasi loading; nanti diganti pemanggilan data sungguhan.
   Future<void> _loadData() async {
     await Future.delayed(const Duration(milliseconds: 800));
     if (!mounted) return;
@@ -45,7 +44,6 @@ class _TimelineScreenState extends State<TimelineScreen> {
     });
   }
 
-  // Dihitung dari state, bukan disimpan sebagai state terpisah.
   List<TimelineEntry> get _filteredEntries {
     final q = _query.trim().toLowerCase();
     return timelineEntries.where((e) {
@@ -59,7 +57,6 @@ class _TimelineScreenState extends State<TimelineScreen> {
     }).toList();
   }
 
-  // Menyisipkan nama era (String) di antara entri (TimelineEntry).
   List<Object> _groupByEra(List<TimelineEntry> entries) {
     final rows = <Object>[];
     String? lastEra;
@@ -142,9 +139,11 @@ class _TimelineScreenState extends State<TimelineScreen> {
                   child: TimelineEntryCard(
                     entry: row,
                     isFavorite: _favoriteIds.contains(row.id),
-                    onTap: () {
-                      // TODO: buka layar detail (layar ke-2).
-                    },
+                    onTap:  () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => TimelineDetailScreen(entry: row),
+                      ),
+                    ),
                     onFavoriteToggled: _toggleFavorite,
                   ),
                 );
